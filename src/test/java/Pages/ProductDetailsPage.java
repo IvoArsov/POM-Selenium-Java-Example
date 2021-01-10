@@ -6,20 +6,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ProductDetailsPage {
-    WebDriver browser;
-    WebDriverWait wait;
+public class ProductDetailsPage extends BasePage {
+
+    private By addToCartBtnLocator = By.xpath("//p[@id='add_to_cart']/button");
 
     public ProductDetailsPage(WebDriver browserDriver){
-        browser = browserDriver;
+        super(browserDriver);
 
         // Wait for page load
         WebDriverWait wait = new WebDriverWait(browser, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@id='add_to_cart']/button")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(addToCartBtnLocator));
     }
 
     public void addProductToCart(){
-        WebElement addToCartBtn = browser.findElement(By.xpath("//p[@id='add_to_cart']/button"));
+        WebElement addToCartBtn = browser.findElement(addToCartBtnLocator);
         addToCartBtn.click();
     }
 }

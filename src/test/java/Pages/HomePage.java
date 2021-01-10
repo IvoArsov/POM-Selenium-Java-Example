@@ -3,31 +3,29 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class HomePage {
+public class HomePage extends BasePage {
 
-    WebDriver browser;
-    WebDriverWait wait;
+    private By logInLinkLocator = By.cssSelector("a.login");
+    private By productNamesListLocator = By.cssSelector("a.product-name");
 
     public HomePage(WebDriver browserDriver){
-        browser = browserDriver;
+        super(browserDriver);
 
         // Wait for page load
         WebDriverWait wait = new WebDriverWait(browser, 10);
     }
 
     public void navigateToLogIn(){
-        WebElement logInLink = browser.findElement(By.cssSelector("a.login"));
+        WebElement logInLink = browser.findElement(logInLinkLocator);
         logInLink.click();
     }
 
     public List<WebElement> getProductNameLinks(){
-        List<WebElement> productNamesList = browser.findElements(By.cssSelector("a.product-name"));
+        List<WebElement> productNamesList = browser.findElements(productNamesListLocator);
         return productNamesList;
     }
 }

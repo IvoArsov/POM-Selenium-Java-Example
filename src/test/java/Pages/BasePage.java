@@ -8,8 +8,9 @@ public class BasePage {
     WebDriverWait wait;
 
     public BasePage(WebDriver browserDriver){
+
         browser = browserDriver;
         // Wait for page load
-        WebDriverWait wait = new WebDriverWait(browser, 10);
+        wait = new WebDriverWait(browser, 10);
     }
 }
