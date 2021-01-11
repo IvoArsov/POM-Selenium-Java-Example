@@ -27,19 +27,14 @@ public class POMCartTests {
         // go to website
         browser.get("http://automationpractice.com/");
 
-        // navigate to login page
+        // navigate to login page and login
         HomePage homePage = new HomePage(browser);
-        homePage.navigateToLogIn();
+        homePage.navigateToLogIn()
+                .setEmailAddress("arsov.ivaylo@gmail.com")
+                .setPassword("pass547*")
+                .clickSignInBtn()
+                .backToHomePage();
 
-        // log in
-        LoginPage loginPage = new LoginPage(browser);
-        loginPage.setEmailAddress("arsov.ivaylo@gmail.com");
-        loginPage.setPassword("pass547*");
-        loginPage.clickSignInBtn();
-
-        // navigate back to home page
-        UserAccountPage userAccountPage = new UserAccountPage(browser);
-        userAccountPage.backToHomePage();
 
         // select the first product
         List<WebElement> productNameLinks = homePage.getProductNameLinks();

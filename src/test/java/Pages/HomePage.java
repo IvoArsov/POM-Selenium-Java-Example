@@ -19,9 +19,10 @@ public class HomePage extends BasePage {
         WebDriverWait wait = new WebDriverWait(browser, 10);
     }
 
-    public void navigateToLogIn(){
+    public LoginPage navigateToLogIn(){
         WebElement logInLink = browser.findElement(logInLinkLocator);
         logInLink.click();
+        return new LoginPage(browser);
     }
 
     public List<WebElement> getProductNameLinks(){
