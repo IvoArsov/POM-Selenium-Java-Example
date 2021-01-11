@@ -18,7 +18,7 @@ public class AddToCartConfirmationPopUp extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(confirmCheckoutBtnLocator));
     }
 
-    public void confirmAddToCart(){
+    public void proceedToCheckout(){
         WebElement confirmCheckoutBtn = browser.findElement(confirmCheckoutBtnLocator);
         confirmCheckoutBtn.click();
     }

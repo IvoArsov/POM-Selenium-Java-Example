@@ -18,21 +18,27 @@ public class LoginPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(emailAddressLocator));
     }
 
-    public LoginPage setEmailAddress(String emailAddress){
+    public void login(String emailAddress, String password){
+        setEmailAddress(emailAddress);
+        setPassword(password);
+        clickSignInBtn();
+    }
+
+    private LoginPage setEmailAddress(String emailAddress){
         WebElement emailTextBox = browser.findElement(emailAddressLocator);
         emailTextBox.clear();
         emailTextBox.sendKeys(emailAddress);
         return this;
     }
 
-    public LoginPage setPassword(String password){
+    private LoginPage setPassword(String password){
         WebElement passwordTextBox = browser.findElement(passwordLocator);
         passwordTextBox.clear();
         passwordTextBox.sendKeys(password);
         return this;
     }
 
-    public UserAccountPage clickSignInBtn(){
+    private UserAccountPage clickSignInBtn(){
         WebElement signInBtn = browser.findElement(submitBtnLocator);
         signInBtn.click();
         return new UserAccountPage(browser);

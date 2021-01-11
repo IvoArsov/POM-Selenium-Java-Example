@@ -19,13 +19,22 @@ public class HomePage extends BasePage {
         WebDriverWait wait = new WebDriverWait(browser, 10);
     }
 
-    public LoginPage navigateToLogIn(){
+    public LoginPage navigateToLoginPage(){
         WebElement logInLink = browser.findElement(logInLinkLocator);
         logInLink.click();
         return new LoginPage(browser);
     }
 
-    public List<WebElement> getProductNameLinks(){
+    public void selectProduct(int productIndex){
+        List<WebElement> productNameLinks = getProductNameLinks();
+        productNameLinks.get(productIndex).click();
+    }
+
+    public void selectFirstProduct(){
+        selectProduct(0);
+    }
+
+    private List<WebElement> getProductNameLinks(){
         List<WebElement> productNamesList = browser.findElements(productNamesListLocator);
         return productNamesList;
     }

@@ -1,12 +1,7 @@
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -27,18 +22,23 @@ public class POMCartTests {
         // go to website
         browser.get("http://automationpractice.com/");
 
-        // navigate to login page and login
+        // navigate to login page
         HomePage homePage = new HomePage(browser);
-        homePage.navigateToLogIn()
-                .setEmailAddress("arsov.ivaylo@gmail.com")
-                .setPassword("pass547*")
-                .clickSignInBtn()
-                .backToHomePage();
+        homePage.navigateToLoginPage();
 
+        // login
+        LoginPage loginPage = new LoginPage(browser);
+        loginPage.login("arsov.ivaylo@gmail.com", "pass547*");
+
+        // back to home page
+        UserAccountPage userAccountPage = new UserAccountPage(browser);
+        userAccountPage.navigateToHomePage();
 
         // select the first product
-        List<WebElement> productNameLinks = homePage.getProductNameLinks();
-        productNameLinks.get(0).click();
+//        List<WebElement> productNameLinks = homePage.getProductNameLinks();
+//        productNameLinks.get(0).click();
+        homePage.selectFirstProduct();
+
 
         // add 1 item to the shopping cart
         ProductDetailsPage productDetailsPage = new ProductDetailsPage(browser);
@@ -46,7 +46,7 @@ public class POMCartTests {
 
         // proceed to checkout
         AddToCartConfirmationPopUp addToCartConfirmationPopUp = new AddToCartConfirmationPopUp(browser);
-        addToCartConfirmationPopUp.confirmAddToCart();
+        addToCartConfirmationPopUp.proceedToCheckout();
 
         // verify we have 1 item in the shopping cart
         ShopingCartSummaryPage shopingCartSummaryPage = new ShopingCartSummaryPage(browser);

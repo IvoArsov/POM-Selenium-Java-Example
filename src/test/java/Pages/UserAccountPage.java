@@ -16,7 +16,7 @@ public class UserAccountPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(browser, 10);
     }
 
-    public void backToHomePage(){
+    public void navigateToHomePage(){
         WebElement backToHomeBtn = browser.findElement(backToHomeBtnLocator);
         backToHomeBtn.click();
     }
