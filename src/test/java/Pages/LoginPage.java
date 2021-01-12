@@ -18,10 +18,11 @@ public class LoginPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(emailAddressLocator));
     }
 
-    public void login(String emailAddress, String password){
+    public UserAccountPage login(String emailAddress, String password){
         setEmailAddress(emailAddress);
         setPassword(password);
         clickSignInBtn();
+        return new UserAccountPage(browser);
     }
 
     private LoginPage setEmailAddress(String emailAddress){

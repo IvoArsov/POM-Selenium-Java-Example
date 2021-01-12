@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UserAccountPage extends BasePage {
 
-    private By backToHomeBtnLocator = By.xpath("//*[@id=\"columns\"]/div[1]/a/i");
 
     public UserAccountPage(WebDriver browserDriver){
         super(browserDriver);
@@ -16,8 +15,5 @@ public class UserAccountPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(browser, 10);
     }
 
-    public void navigateToHomePage(){
-        WebElement backToHomeBtn = browser.findElement(backToHomeBtnLocator);
-        backToHomeBtn.click();
-    }
+
 }

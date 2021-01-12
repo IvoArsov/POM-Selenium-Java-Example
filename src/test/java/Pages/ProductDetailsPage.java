@@ -18,8 +18,9 @@ public class ProductDetailsPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(addToCartBtnLocator));
     }
 
-    public void addProductToCart(){
+    public AddToCartConfirmationPopUp addProductToCart(){
         WebElement addToCartBtn = browser.findElement(addToCartBtnLocator);
         addToCartBtn.click();
+        return new AddToCartConfirmationPopUp(browser);
     }
 }

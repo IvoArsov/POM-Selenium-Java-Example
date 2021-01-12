@@ -24,29 +24,12 @@ public class POMCartTests {
 
         // navigate to login page
         HomePage homePage = new HomePage(browser);
-        homePage.navigateToLoginPage();
-
-        // login
-        LoginPage loginPage = new LoginPage(browser);
-        loginPage.login("arsov.ivaylo@gmail.com", "pass547*");
-
-        // back to home page
-        UserAccountPage userAccountPage = new UserAccountPage(browser);
-        userAccountPage.navigateToHomePage();
-
-        // select the first product
-//        List<WebElement> productNameLinks = homePage.getProductNameLinks();
-//        productNameLinks.get(0).click();
-        homePage.selectFirstProduct();
-
-
-        // add 1 item to the shopping cart
-        ProductDetailsPage productDetailsPage = new ProductDetailsPage(browser);
-        productDetailsPage.addProductToCart();
-
-        // proceed to checkout
-        AddToCartConfirmationPopUp addToCartConfirmationPopUp = new AddToCartConfirmationPopUp(browser);
-        addToCartConfirmationPopUp.proceedToCheckout();
+        homePage.navigateToLoginPage()
+                .login("arsov.ivaylo@gmail.com", "pass547*")
+                .navigateToHomePage()
+                .selectFirstProduct()
+                .addProductToCart()
+                .proceedToCheckout();
 
         // verify we have 1 item in the shopping cart
         ShopingCartSummaryPage shopingCartSummaryPage = new ShopingCartSummaryPage(browser);
