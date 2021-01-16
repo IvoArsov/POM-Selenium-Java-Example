@@ -13,6 +13,7 @@ public class UserAccountPage extends BasePage {
 
         // Wait for page load
         WebDriverWait wait = new WebDriverWait(browser, 10);
+        waitForPageTitle("Login - ");
     }
 
 

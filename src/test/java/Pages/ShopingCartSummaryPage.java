@@ -46,6 +46,12 @@ public class ShopingCartSummaryPage extends BasePage {
         return numProducts;
     }
 
+    public double getTotalPrice(){
+        String totalPriceString = browser.findElement(totalPriceLocator).getText();
+        double totalPrice = Double.parseDouble(totalPriceString.substring(1));
+        return totalPrice;
+    }
+
     public List<ShoppingCartItem> getShoppingCart() throws Exception {
         wait.until(ExpectedConditions.visibilityOfElementLocated(shoppingCartTableLocator));
         //validateShoppingCart();
@@ -75,4 +81,6 @@ public class ShopingCartSummaryPage extends BasePage {
 
         return cartItems;
     }
+
+
 }

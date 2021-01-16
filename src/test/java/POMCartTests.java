@@ -1,3 +1,4 @@
+import Pages.Pages.Components.ShoppingCartItem;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,11 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import Pages.*;
 
+import java.util.List;
+
 // Linear Shopping Cart tests for Java
 public class POMCartTests {
 
     @Test
-    public void POMAddToCartTest() {
+    public void POMAddToCartTest() throws Exception {
 
         // initialisation
         System.setProperty("webdriver.chrome.driver","C:\\ChromeDriver\\chromedriver.exe");
@@ -27,15 +30,22 @@ public class POMCartTests {
         homePage.navigateToLoginPage()
                 .login("arsov.ivaylo@gmail.com", "pass547*")
                 .navigateToHomePage()
-                .selectFirstProduct()
+                .selectProduct(1)
+                .addProductToCart()
+                .proceedToCheckout()
+                .navigateToHomePage()
+                .selectProduct(2)
                 .addProductToCart()
                 .proceedToCheckout();
 
         // verify we have 1 item in the shopping cart
         ShopingCartSummaryPage shopingCartSummaryPage = new ShopingCartSummaryPage(browser);
-        int numProducts = shopingCartSummaryPage.getQuantityOfCheckoutProducts();
 
-        assertEquals(numProducts, 1, "Expected number of products in shopping cart was 1 but actual value was: " + Integer.toString(numProducts));
+        List<ShoppingCartItem> cartItems = shopingCartSummaryPage.getShoppingCart();
+        double totalItemsAmount = cartItems.stream().mapToDouble(ShoppingCartItem::getTotalPrice).sum();
+        totalItemsAmount = Math.round(totalItemsAmount*100)/100.0d;
+        double totalAmount = shopingCartSummaryPage.getTotalPrice();
+        assertEquals(totalItemsAmount, totalAmount, "Total value of items does not equal total quoted.");
 
         browser.quit();
     }
